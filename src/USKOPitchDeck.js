@@ -9,16 +9,16 @@ const USKOPitchDeck = () => {
     {
       id: "title",
       content: (
-        <section className="flex flex-col justify-center items-center min-h-screen relative px-4 py-12">
+        <section className="flex flex-col justify-center items-center min-h-screen relative px-3 sm:px-4 py-8 sm:py-12">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNiIgc3Ryb2tlPSIjYjRhNTc3IiBzdHJva2Utb3BhY2l0eT0iLjEiLz48L2c+PC9zdmc+')] opacity-10"></div>
-          <div className="z-10 flex flex-col items-center w-full">
-            <div className="flex flex-row items-center justify-center gap-8 mb-8">
-              <img src="https://i.imgur.com/J2ME1ji.png" alt="USKO Logo" className="h-24 md:h-32 drop-shadow-lg bg-white/10 rounded-xl p-2" />
-              <span className="text-4xl md:text-6xl font-extrabold text-[#b4a577] mx-2">×</span>
-              <img src="https://www.diamondpet.com/wp-content/uploads/2019/01/Diamond-Logo_rev-1.png" alt="Diamond Pet Food Logo" className="h-24 md:h-32 drop-shadow-lg bg-white/10 rounded-xl p-2" />
+          <div className="z-10 flex flex-col items-center w-full max-w-[95%] sm:max-w-full">
+            <div className="flex flex-row items-center justify-center gap-4 sm:gap-8 mb-6 sm:mb-8">
+              <img src="https://i.imgur.com/J2ME1ji.png" alt="USKO Logo" className="h-16 sm:h-24 md:h-32 drop-shadow-lg bg-white/10 rounded-xl p-2" />
+              <span className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-[#b4a577] mx-2">×</span>
+              <img src="https://www.diamondpet.com/wp-content/uploads/2019/01/Diamond-Logo_rev-1.png" alt="Diamond Pet Food Logo" className="h-16 sm:h-24 md:h-32 drop-shadow-lg bg-white/10 rounded-xl p-2" />
             </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold text-white text-center mb-4 tracking-tight drop-shadow">Logistics. Delivered. <span className="text-[#b4a577]">Exceptionally.</span></h1>
-            <p className="text-lg md:text-2xl text-gray-300 text-center max-w-2xl mb-8">USKO & Diamond Pet Food: Specialized logistics for dry pet food distribution across North America, Mexico, South America, and overseas markets.</p>
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white text-center mb-4 tracking-tight drop-shadow px-2">Logistics. Delivered. <span className="text-[#b4a577]">Exceptionally.</span></h1>
+            <p className="text-base sm:text-lg md:text-2xl text-gray-300 text-center max-w-2xl mb-6 sm:mb-8 px-3">USKO & Diamond Pet Food: Specialized logistics for dry pet food distribution across North America, Mexico, South America, and overseas markets.</p>
             <span className="inline-block bg-[#b4a577]/20 border border-[#b4a577] text-[#b4a577] font-bold text-sm md:text-lg px-4 py-2 rounded-full shadow-lg mb-4">Prepared for Diamond Pet Food</span>
           </div>
         </section>
@@ -205,30 +205,30 @@ const USKOPitchDeck = () => {
     {
       id: "assets",
       content: (
-        <section className="flex flex-col md:flex-row items-center justify-center gap-10 px-4 py-16 relative min-h-screen">
-          <div className="flex-1 z-10">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Transportation <span className="text-[#b4a577]">Assets</span></h2>
-            <p className="text-lg text-gray-300 mb-8">With a dedicated fleet of 300+ assets and 700+ sprinter vans, USKO provides comprehensive full truckload, LTL, and expedited distribution solutions. Our specialized fleet ensures your dry pet food products arrive safely and on time, with flexible options for any volume requirement.</p>
+        <section className="flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-10 px-3 sm:px-4 py-8 sm:py-16 relative min-h-screen">
+          <div className="flex-1 z-10 max-w-[95%] sm:max-w-full">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 sm:mb-6">Transportation <span className="text-[#b4a577]">Assets</span></h2>
+            <p className="text-base sm:text-lg text-gray-300 mb-6 sm:mb-8">With a dedicated fleet of 300+ assets and 700+ sprinter vans, USKO provides comprehensive full truckload, LTL, and expedited distribution solutions. Our specialized fleet ensures your dry pet food products arrive safely and on time, with flexible options for any volume requirement.</p>
             
-            <div className="space-y-4 mb-8">
-              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
-                <h3 className="text-lg font-semibold text-[#b4a577] mb-2">Full Truckload & LTL Services</h3>
-                <p className="text-gray-300 text-sm">Flexible shipping options with 300+ assets for truckload and 700+ sprinter vans for expedited LTL delivery</p>
+            <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-3 sm:p-4 hover:bg-white/10 transition-all duration-300">
+                <h3 className="text-base sm:text-lg font-semibold text-[#b4a577] mb-2">Full Truckload & LTL Services</h3>
+                <p className="text-sm sm:text-base text-gray-300">Flexible shipping options with 300+ assets for truckload and 700+ sprinter vans for expedited LTL delivery</p>
               </div>
-              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
-                <h3 className="text-lg font-semibold text-[#b4a577] mb-2">Expedited Pet Food Solutions</h3>
-                <p className="text-gray-300 text-sm">Dedicated sprinter van fleet for time-sensitive and LTL pet food deliveries</p>
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-3 sm:p-4 hover:bg-white/10 transition-all duration-300">
+                <h3 className="text-base sm:text-lg font-semibold text-[#b4a577] mb-2">Expedited Pet Food Solutions</h3>
+                <p className="text-sm sm:text-base text-gray-300">Dedicated sprinter van fleet for time-sensitive and LTL pet food deliveries</p>
               </div>
-              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
-                <h3 className="text-lg font-semibold text-[#b4a577] mb-2">Advanced Scheduling & Tracking</h3>
-                <p className="text-gray-300 text-sm">Real-time visibility and proactive communication across our entire fleet</p>
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-3 sm:p-4 hover:bg-white/10 transition-all duration-300">
+                <h3 className="text-base sm:text-lg font-semibold text-[#b4a577] mb-2">Advanced Scheduling & Tracking</h3>
+                <p className="text-sm sm:text-base text-gray-300">Real-time visibility and proactive communication across our entire fleet</p>
               </div>
             </div>
           </div>
-          <div className="flex-1 flex flex-col gap-6 z-10">
-            <img src="https://imgur.com/5MNmizZ.jpg" alt="USKO Truck" className="w-full h-48 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
-            <img src="https://imgur.com/WyZyHpc.jpg" alt="USKO International Shipping" className="w-full h-40 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
-            <img src="https://imgur.com/TptDEQk.jpg" alt="USKO Transportation" className="w-full h-40 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
+          <div className="flex-1 flex flex-col gap-6 z-10 w-full max-w-[95%] sm:max-w-full">
+            <img src="https://imgur.com/5MNmizZ.jpg" alt="USKO Truck" className="w-full h-36 sm:h-48 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
+            <img src="https://imgur.com/WyZyHpc.jpg" alt="USKO International Shipping" className="w-full h-32 sm:h-40 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
+            <img src="https://imgur.com/TptDEQk.jpg" alt="USKO Transportation" className="w-full h-32 sm:h-40 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
           </div>
         </section>
       )
@@ -238,76 +238,76 @@ const USKOPitchDeck = () => {
     {
       id: "value",
       content: (
-        <section className="flex flex-col justify-center items-center px-4 py-16 min-h-screen relative">
+        <section className="flex flex-col justify-center items-center px-3 sm:px-4 py-8 sm:py-16 min-h-screen relative">
           <div className="max-w-6xl mx-auto w-full z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Our <span className="text-[#b4a577]">Value Proposition</span></h2>
-              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">Why Choose USKO for Diamond Pet Food?</p>
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-3 sm:mb-4">Our <span className="text-[#b4a577]">Value Proposition</span></h2>
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">Why Choose USKO for Diamond Pet Food?</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
-                <h3 className="text-xl font-semibold text-[#b4a577] mb-3">Dry Pet Food Expertise</h3>
-                <p className="text-gray-300">Specialized handling and transportation of dry pet food products with proper storage and distribution protocols.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 sm:p-6 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
+                <h3 className="text-lg sm:text-xl font-semibold text-[#b4a577] mb-2 sm:mb-3">Dry Pet Food Expertise</h3>
+                <p className="text-sm sm:text-base text-gray-300">Specialized handling and transportation of dry pet food products with proper storage and distribution protocols.</p>
               </div>
-              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
-                <h3 className="text-xl font-semibold text-[#b4a577] mb-3">Advanced Scheduling System</h3>
-                <p className="text-gray-300">Efficient coordination between manufacturing facilities and delivery points with real-time updates and tracking.</p>
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 sm:p-6 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
+                <h3 className="text-lg sm:text-xl font-semibold text-[#b4a577] mb-2 sm:mb-3">Advanced Scheduling System</h3>
+                <p className="text-sm sm:text-base text-gray-300">Efficient coordination between manufacturing facilities and delivery points with real-time updates and tracking.</p>
               </div>
-              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
-                <h3 className="text-xl font-semibold text-[#b4a577] mb-3">Global Distribution Network</h3>
-                <p className="text-gray-300">Comprehensive coverage across North America, Mexico, South America, and overseas markets including Europe.</p>
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 sm:p-6 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
+                <h3 className="text-lg sm:text-xl font-semibold text-[#b4a577] mb-2 sm:mb-3">Global Distribution Network</h3>
+                <p className="text-sm sm:text-base text-gray-300">Comprehensive coverage across North America, Mexico, South America, and overseas markets including Europe.</p>
               </div>
             </div>
-            
-            <div className="bg-gradient-to-r from-[#b4a577]/20 to-[#b4a577]/10 backdrop-blur-lg rounded-xl p-6 border border-[#b4a577]/30 mb-8">
-              <div className="flex items-center mb-4">
-                <div className="w-10 h-10 rounded-full bg-[#b4a577] flex items-center justify-center mr-4">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+            <div className="bg-gradient-to-r from-[#b4a577]/20 to-[#b4a577]/10 backdrop-blur-lg rounded-xl p-4 sm:p-6 border border-[#b4a577]/30 mb-6 sm:mb-8">
+              <div className="flex items-center mb-3 sm:mb-4">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#b4a577] flex items-center justify-center mr-3 sm:mr-4">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-[#b4a577]">24/7 Global Support</h3>
+                <h3 className="text-base sm:text-lg font-semibold text-[#b4a577]">24/7 Global Support</h3>
               </div>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
                 Our round-the-clock customer service team provides <span className="text-[#b4a577] font-semibold">continuous support across all time zones</span>, 
                 ensuring your shipments are monitored and managed 24/7. With dedicated support staff in multiple regions, we offer real-time assistance 
                 and immediate response to any logistics needs, regardless of location or time of day.
               </p>
             </div>
-            
-            <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 shadow-lg mb-8">
-              <h3 className="text-xl font-semibold text-[#b4a577] mb-4">Key Benefits for Diamond Pet Food</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="border-l-4 border-[#b4a577] pl-4">
+
+            <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 sm:p-6 shadow-lg mb-6 sm:mb-8">
+              <h3 className="text-lg sm:text-xl font-semibold text-[#b4a577] mb-3 sm:mb-4">Key Benefits for Diamond Pet Food</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div className="border-l-4 border-[#b4a577] pl-3 sm:pl-4">
                   <h4 className="font-semibold text-white mb-1">Asset-Based 3PL</h4>
-                  <p className="text-gray-300 text-sm">Dedicated fleet and resources for reliable dry pet food transportation.</p>
+                  <p className="text-xs sm:text-sm text-gray-300">Dedicated fleet and resources for reliable dry pet food transportation.</p>
                 </div>
-                <div className="border-l-4 border-[#b4a577] pl-4">
+                <div className="border-l-4 border-[#b4a577] pl-3 sm:pl-4">
                   <h4 className="font-semibold text-white mb-1">Full Service Support</h4>
-                  <p className="text-gray-300 text-sm">Complete customer service staff for scheduling, tracking & trace, with single POC.</p>
+                  <p className="text-xs sm:text-sm text-gray-300">Complete customer service staff for scheduling, tracking & trace, with single POC.</p>
                 </div>
-                <div className="border-l-4 border-[#b4a577] pl-4">
+                <div className="border-l-4 border-[#b4a577] pl-3 sm:pl-4">
                   <h4 className="font-semibold text-white mb-1">Strategic Locations</h4>
-                  <p className="text-gray-300 text-sm">Corporate headquarters in Houston, TX and HQ2 in Roseville, CA for comprehensive coverage.</p>
+                  <p className="text-xs sm:text-sm text-gray-300">Corporate headquarters in Houston, TX and HQ2 in Roseville, CA for comprehensive coverage.</p>
                 </div>
-                <div className="border-l-4 border-[#b4a577] pl-4">
+                <div className="border-l-4 border-[#b4a577] pl-3 sm:pl-4">
                   <h4 className="font-semibold text-white mb-1">International Reach</h4>
-                  <p className="text-gray-300 text-sm">Expertise in Mexico, South America, and overseas export logistics.</p>
+                  <p className="text-xs sm:text-sm text-gray-300">Expertise in Mexico, South America, and overseas export logistics.</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-[#b4a577]/20 to-[#b4a577]/10 backdrop-blur-lg rounded-xl p-6 border border-[#b4a577]/30">
-              <div className="flex items-center mb-3">
-                <div className="w-8 h-8 rounded-full bg-[#b4a577] flex items-center justify-center mr-3">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-gradient-to-r from-[#b4a577]/20 to-[#b4a577]/10 backdrop-blur-lg rounded-xl p-4 sm:p-6 border border-[#b4a577]/30">
+              <div className="flex items-center mb-2 sm:mb-3">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#b4a577] flex items-center justify-center mr-2 sm:mr-3">
+                  <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-[#b4a577]">Did You Know?</h3>
+                <h3 className="text-base sm:text-lg font-semibold text-[#b4a577]">Did You Know?</h3>
               </div>
-              <p className="text-gray-300 text-sm leading-relaxed">
+              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
                 We understand Diamond Pet Food also manufactures <span className="text-[#b4a577] font-semibold">Kirkland Signature pet food for Costco</span>. 
                 USKO already delivers to Costco locations for our other customers, making the transition seamless for your Kirkland Signature product line. 
                 Our existing Costco relationships and delivery protocols ensure smooth operations from day one.
@@ -326,49 +326,49 @@ const USKOPitchDeck = () => {
     {
       id: "contact",
       content: (
-        <section className="flex flex-col items-center justify-center px-4 py-16 min-h-screen relative">
+        <section className="flex flex-col items-center justify-center px-3 sm:px-4 py-8 sm:py-16 min-h-screen relative">
           <div className="z-10 max-w-4xl w-full text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Ready to Transform Your <span className="text-[#b4a577]">Logistics?</span></h2>
-            <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto">Partner with USKO to elevate Diamond Pet Food's distribution capabilities with our specialized fleet and global network.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 sm:mb-6">Ready to Transform Your <span className="text-[#b4a577]">Logistics?</span></h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-12 max-w-2xl mx-auto">Partner with USKO to elevate Diamond Pet Food's distribution capabilities with our specialized fleet and global network.</p>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-[#b4a577]/30 shadow-lg hover:scale-105 transition-all duration-300">
-                <div className="w-12 h-12 rounded-full bg-[#b4a577] flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 sm:p-6 border border-[#b4a577]/30 shadow-lg hover:scale-105 transition-all duration-300">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#b4a577] flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
-                <h3 className="text-[#b4a577] font-bold text-lg mb-2">Contact Us</h3>
-                <a href="tel:2142501011" className="text-[#b4a577] font-bold text-lg hover:text-white transition-colors duration-300">(214) 250-1011 ext. 1212</a>
+                <h3 className="text-[#b4a577] font-bold text-base sm:text-lg mb-2">Contact Us</h3>
+                <a href="tel:2142501011" className="text-[#b4a577] font-bold text-base sm:text-lg hover:text-white transition-colors duration-300">(214) 250-1011 ext. 1212</a>
               </div>
               
-              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-[#b4a577]/30 shadow-lg hover:scale-105 transition-all duration-300">
-                <div className="w-12 h-12 rounded-full bg-[#b4a577] flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 sm:p-6 border border-[#b4a577]/30 shadow-lg hover:scale-105 transition-all duration-300">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#b4a577] flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h3 className="text-[#b4a577] font-bold text-lg mb-2">Email</h3>
-                <a href="mailto:ron@uskoinc.com" className="text-[#b4a577] font-bold text-lg hover:text-white transition-colors duration-300">ron@uskoinc.com</a>
+                <h3 className="text-[#b4a577] font-bold text-base sm:text-lg mb-2">Email</h3>
+                <a href="mailto:ron@uskoinc.com" className="text-[#b4a577] font-bold text-base sm:text-lg hover:text-white transition-colors duration-300">ron@uskoinc.com</a>
               </div>
               
-              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-[#b4a577]/30 shadow-lg hover:scale-105 transition-all duration-300">
-                <div className="w-12 h-12 rounded-full bg-[#b4a577] flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 sm:p-6 border border-[#b4a577]/30 shadow-lg hover:scale-105 transition-all duration-300">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#b4a577] flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   </svg>
                 </div>
-                <h3 className="text-[#b4a577] font-bold text-lg mb-2">Corporate Offices</h3>
+                <h3 className="text-[#b4a577] font-bold text-base sm:text-lg mb-2">Corporate Offices</h3>
                 <p className="text-gray-300 text-sm">Houston, TX</p>
               </div>
             </div>
             
-            <div className="flex flex-row items-center justify-center gap-8 mb-8">
-              <img src="https://i.imgur.com/J2ME1ji.png" alt="USKO Logo" className="h-16 drop-shadow-lg bg-white/10 rounded-xl p-2" />
-              <img src="https://www.diamondpet.com/wp-content/uploads/2019/01/Diamond-Logo_rev-1.png" alt="Diamond Pet Food Logo" className="h-16 drop-shadow-lg bg-white/10 rounded-xl p-2" />
+            <div className="flex flex-row items-center justify-center gap-6 sm:gap-8 mb-6 sm:mb-8">
+              <img src="https://i.imgur.com/J2ME1ji.png" alt="USKO Logo" className="h-12 sm:h-16 drop-shadow-lg bg-white/10 rounded-xl p-2" />
+              <img src="https://www.diamondpet.com/wp-content/uploads/2019/01/Diamond-Logo_rev-1.png" alt="Diamond Pet Food Logo" className="h-12 sm:h-16 drop-shadow-lg bg-white/10 rounded-xl p-2" />
             </div>
             
-            <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Logistics. Delivered. <span className="text-[#b4a577]">Exceptionally.</span></h3>
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">Logistics. Delivered. <span className="text-[#b4a577]">Exceptionally.</span></h3>
           </div>
         </section>
       )
