@@ -1,841 +1,471 @@
-import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import React, { useState, useEffect, useCallback } from "react";
 
-function NextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <button
-      aria-label="Next Slide"
-      className={className}
-      style={{
-        ...style,
-        display: 'flex',
-        right: 40,
-        zIndex: 10,
-        width: 80,
-        height: 80,
-        background: '#eb0028',
-        borderRadius: '50%',
-        color: 'white',
-        border: 'none',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-        transition: 'all 0.3s ease',
-        cursor: 'pointer',
-      }}
-      onClick={onClick}
-      onMouseOver={e => {
-        e.currentTarget.style.background = '#ff1a3d';
-        e.currentTarget.style.transform = 'scale(1.05)';
-      }}
-      onMouseOut={e => {
-        e.currentTarget.style.background = '#eb0028';
-        e.currentTarget.style.transform = 'scale(1)';
-      }}
-    >
-      <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
-        <circle cx="16" cy="16" r="16" fill="none"/>
-        <path d="M12 8l8 8-8 8" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    </button>
-  );
-}
+const USKOPitchDeck = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-function PrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <button
-      aria-label="Previous Slide"
-      className={className}
-      style={{
-        ...style,
-        display: 'flex',
-        left: 40,
-        zIndex: 10,
-        width: 80,
-        height: 80,
-        background: '#eb0028',
-        borderRadius: '50%',
-        color: 'white',
-        border: 'none',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-        transition: 'all 0.3s ease',
-        cursor: 'pointer',
-      }}
-      onClick={onClick}
-      onMouseOver={e => {
-        e.currentTarget.style.background = '#ff1a3d';
-        e.currentTarget.style.transform = 'scale(1.05)';
-      }}
-      onMouseOut={e => {
-        e.currentTarget.style.background = '#eb0028';
-        e.currentTarget.style.transform = 'scale(1)';
-      }}
-    >
-      <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
-        <circle cx="16" cy="16" r="16" fill="none"/>
-        <path d="M20 8l-8 8 8 8" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    </button>
-  );
-}
+  const nextSlide = useCallback(() => {
+    if (currentSlide < slides.length - 1 && !isTransitioning) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentSlide(currentSlide + 1);
+        setIsTransitioning(false);
+      }, 150);
+    }
+  }, [currentSlide, isTransitioning]);
 
-const slides = [
-  // Title Slide
-  <section className="flex flex-col justify-center items-center min-h-screen bg-white px-3 py-4 md:px-4 md:py-8">
-    <div className="max-w-6xl mx-auto w-full flex flex-col items-center justify-center">
-      {/* Logo */}
-      <img 
-        src="https://i.imgur.com/J2ME1ji.png" 
-        alt="USKO Logo" 
-        className="w-32 md:w-64 mb-4 md:mb-8 drop-shadow-xl" 
-        style={{
-          maxWidth: '50vw',
-          filter: 'drop-shadow(0 10px 15px rgba(235, 0, 40, 0.15))'
-        }}
-      />
-      
-      {/* Main Title */}
-      <div className="text-center mb-4 md:mb-8">
-        <h1 className="text-xl md:text-5xl font-extrabold tracking-tight mb-2 md:mb-4 leading-tight">
-          <div className="flex flex-col md:flex-row md:gap-2 justify-center items-center">
-            <span className="text-[#eb0028] whitespace-nowrap">Logistics.</span>
-            <span className="text-[#eb0028] whitespace-nowrap">Delivered.</span>
-            <span className="text-black whitespace-nowrap">Exceptionally.</span>
+  const prevSlide = useCallback(() => {
+    if (currentSlide > 0 && !isTransitioning) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentSlide(currentSlide - 1);
+        setIsTransitioning(false);
+      }, 150);
+    }
+  }, [currentSlide, isTransitioning]);
+
+  const slides = [
+    // Slide 1: Title
+    {
+      id: "title",
+      content: (
+        <section className="flex flex-col justify-center items-center min-h-screen relative px-4 py-12">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNiIgc3Ryb2tlPSIjYjRhNTc3IiBzdHJva2Utb3BhY2l0eT0iLjEiLz48L2c+PC9zdmc+')] opacity-10"></div>
+          <div className="z-10 flex flex-col items-center w-full">
+            <div className="flex flex-row items-center justify-center gap-8 mb-8">
+              <img src="https://i.imgur.com/J2ME1ji.png" alt="USKO Logo" className="h-20 md:h-28 drop-shadow-lg bg-white/10 rounded-xl p-2" />
+              <span className="text-4xl md:text-6xl font-extrabold text-[#b4a577] mx-2">×</span>
+              <img src="https://www.diamondpet.com/wp-content/uploads/2019/01/Diamond-Logo_rev-1.png" alt="Diamond Pet Food Logo" className="h-20 md:h-28 drop-shadow-lg bg-white/10 rounded-xl p-2" />
+            </div>
+            <h1 className="text-4xl md:text-6xl font-extrabold text-white text-center mb-4 tracking-tight drop-shadow">Logistics. Delivered. <span className="text-[#b4a577]">Exceptionally.</span></h1>
+            <p className="text-lg md:text-2xl text-gray-300 text-center max-w-2xl mb-8">USKO & Diamond Pet Food: Specialized logistics for dry pet food distribution across North America, Mexico, South America, and overseas markets.</p>
+            <span className="inline-block bg-[#b4a577]/20 border border-[#b4a577] text-[#b4a577] font-bold text-sm md:text-lg px-4 py-2 rounded-full shadow-lg mb-4">Prepared for Diamond Pet Food</span>
           </div>
-        </h1>
-        
-        <h2 className="text-xs md:text-xl text-gray-700 max-w-2xl mx-auto font-medium leading-relaxed px-2">
-          <span className="block mb-2">USKO is your trusted partner for white glove, expedited, and specialized logistics across North America.</span>
-          <span className="block">We move what matters—on time, every time.</span>
-        </h2>
-      </div>
-
-      {/* CTA Button */}
-      <a 
-        href="#contact" 
-        className="bg-[#eb0028] text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-bold text-sm md:text-base shadow-lg hover:bg-[#cc0023] transition-all duration-300 mb-4 md:mb-8 transform hover:scale-105 whitespace-nowrap"
-      >
-        Let's Move Forward Together
-      </a>
-
-      {/* Client Badge */}
-      <div className="bg-[#eb0028]/5 p-2.5 md:p-4 rounded-xl border border-[#eb0028]/20 w-full max-w-[280px] md:max-w-sm">
-        <div className="flex items-center justify-center space-x-2">
-          <svg className="w-4 h-4 md:w-5 md:h-5 text-[#eb0028] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-          </svg>
-          <span className="text-[#eb0028] font-bold text-sm md:text-lg whitespace-nowrap">Prepared for Expeditors International</span>
-        </div>
-      </div>
-    </div>
-  </section>,
-
-  // About USKO
-  <section className="flex flex-col justify-center items-center px-3 py-4 md:p-6 bg-white min-h-screen">
-    <div className="max-w-6xl mx-auto w-full">
-      <h1 className="text-3xl md:text-5xl font-extrabold text-[#eb0028] mb-2 md:mb-3 text-center tracking-tight">About <span className="text-black">USKO</span></h1>
-      <h2 className="text-lg md:text-2xl text-gray-700 mb-4 md:mb-5 text-center max-w-2xl mx-auto font-semibold">Excellence in Transportation and Logistics</h2>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4">
-        <div className="flex justify-center items-center order-2 md:order-1">
-          <img src="https://i.imgur.com/H7F2rk9.png" alt="USKO Logistics Truck" className="max-w-full h-auto md:h-80 rounded-lg shadow-lg object-cover" style={{maxHeight: '280px'}} />
-        </div>
-        <div className="space-y-3 md:space-y-4 order-1 md:order-2">
-          <div className="bg-gray-50 rounded-xl p-3 md:p-4 shadow-lg">
-            <h3 className="text-lg md:text-xl font-semibold text-[#eb0028] mb-3">Company Highlights</h3>
-            <div className="grid grid-cols-3 gap-2 md:gap-3">
-              <div className="text-center">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#eb0028] flex items-center justify-center text-white font-bold text-sm md:text-base mx-auto shadow-md">
-                  18
-                </div>
-                <div className="text-gray-700 text-xs md:text-sm mt-1">Years Active</div>
+        </section>
+      )
+    },
+    
+    // Slide 2: About USKO
+    {
+      id: "about",
+      content: (
+        <section className="flex flex-col md:flex-row items-center justify-center gap-10 px-4 py-16 relative min-h-screen">
+          <div className="flex-1 z-10">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">About <span className="text-[#b4a577]">USKO</span></h2>
+            <p className="text-lg text-gray-300 mb-8">18+ years of logistics excellence. 65M+ miles driven. 500+ team members. USKO specializes in comprehensive, asset-based logistics solutions for dry pet food transportation across North America, Mexico, South America, and international markets.</p>
+            <div className="grid grid-cols-3 gap-6 mb-8">
+              <div className="text-center bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:scale-105 transition-all duration-300">
+                <div className="text-3xl font-bold text-[#b4a577]">18+</div>
+                <div className="text-gray-400 text-sm">Years Active</div>
               </div>
-              <div className="text-center">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#eb0028] flex items-center justify-center text-white font-bold text-sm md:text-base mx-auto shadow-md">
-                  65M+
-                </div>
-                <div className="text-gray-700 text-xs md:text-sm mt-1">Miles</div>
+              <div className="text-center bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:scale-105 transition-all duration-300">
+                <div className="text-3xl font-bold text-[#b4a577]">65M+</div>
+                <div className="text-gray-400 text-sm">Miles Driven</div>
               </div>
-              <div className="text-center">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#eb0028] flex items-center justify-center text-white font-bold text-sm md:text-base mx-auto shadow-md">
-                  500+
-                </div>
-                <div className="text-gray-700 text-xs md:text-sm mt-1">Team</div>
+              <div className="text-center bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:scale-105 transition-all duration-300">
+                <div className="text-3xl font-bold text-[#b4a577]">500+</div>
+                <div className="text-gray-400 text-sm">Team Members</div>
               </div>
             </div>
+            <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6">
+              <h3 className="text-xl font-semibold text-[#b4a577] mb-3">Strategic Locations</h3>
+              <p className="text-gray-300">Corporate offices in Roseville, CA and Texas provide comprehensive coverage for nationwide distribution and international shipping coordination.</p>
+            </div>
           </div>
-          <div className="bg-gray-50 rounded-xl p-3 md:p-4 shadow-lg">
-            <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
-              From full truckload shipments to specialized logistics, USKO stands as a trusted partner in comprehensive logistics and cargo management across North America and Europe.
-            </p>
-            <p className="text-xs md:text-sm text-gray-700 leading-relaxed mt-2">
-              Our premium white-glove service ensures your high-value equipment and sensitive technology arrives safely, on time, every time, with our professional drivers following strict security protocols.
-            </p>
+          <div className="flex-1 flex justify-center z-10">
+            <img src="https://i.imgur.com/H7F2rk9.png" alt="USKO Logistics Truck" className="max-w-full h-auto md:h-96 rounded-lg shadow-lg object-cover hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
           </div>
-        </div>
-      </div>
-    </div>
-  </section>,
+        </section>
+      )
+    },
 
-  // Transportation Assets
-  <section className="flex flex-col justify-center items-center px-3 py-4 md:p-8 bg-white min-h-screen">
-    <div className="max-w-6xl mx-auto w-full">
-      <div className="bg-[#eb0028]/10 p-3 md:p-4 rounded-lg border border-[#eb0028]/30 mb-4 md:mb-6 text-center">
-        <h1 className="text-3xl md:text-5xl font-extrabold text-[#eb0028] mb-2 text-center tracking-tight">Our <span className="text-black">Transportation Assets</span></h1>
-        <h2 className="text-lg md:text-2xl text-gray-700 text-center max-w-3xl mx-auto font-semibold">Comprehensive Fleet Solutions for Every Need</h2>
-      </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6">
-        <div className="bg-gray-50 rounded-xl p-6 shadow-lg">
-          <div className="flex items-center mb-4">
-            <div className="w-12 h-12 rounded-full bg-[#eb0028] flex items-center justify-center text-white mr-4">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
+    // Slide 3: Branch Locations
+    {
+      id: "branches",
+      content: (
+        <section className="flex flex-col justify-center items-center px-4 py-16 min-h-screen relative">
+          <div className="max-w-6xl mx-auto w-full z-10">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Strategic <span className="text-[#b4a577]">Locations</span></h2>
+              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">USKO's branch network provides comprehensive coverage and local expertise</p>
             </div>
-            <h3 className="text-xl font-semibold text-[#eb0028]">Express LTL & Full Truckload</h3>
-          </div>
-          <ul className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#eb0028] mr-3 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>Professional drivers trained in secure transportation protocols</span>
-            </li>
-            <li className="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#eb0028] mr-3 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>Specialized 53' trailers with air-ride suspension</span>
-            </li>
-            <li className="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#eb0028] mr-3 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>Temperature-controlled solutions for sensitive shipments</span>
-            </li>
-            <li className="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#eb0028] mr-3 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>24/7 tracking via satellite GPS monitoring</span>
-            </li>
-          </ul>
-          
-          <div className="mt-4">
-            <img src="https://imgur.com/5MNmizZ.jpg" alt="USKO Truck" className="w-full h-48 object-cover rounded-lg shadow-md" />
-          </div>
-        </div>
-        
-        <div className="bg-gray-50 rounded-xl p-6 shadow-lg relative">
-          <div className="flex items-center mb-4">
-            <div className="w-12 h-12 rounded-full bg-[#eb0028] flex items-center justify-center text-white mr-4">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-[#eb0028]">Expedite White Glove Services</h3>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div>
-              <img src="https://imgur.com/WyZyHpc.jpg" alt="USKO Lift Gate Services" className="w-full h-40 object-cover rounded-lg shadow-md" />
-              <p className="text-sm text-gray-500 text-center italic mt-2">USKO specialized lift gate service</p>
-            </div>
-            <div>
-              <img src="https://imgur.com/TptDEQk.jpg" alt="USKO Sprinter Van Fleet" className="w-full h-40 object-cover rounded-lg shadow-md" />
-              <p className="text-sm text-gray-500 text-center italic mt-2">Part of our 700+ sprinter van fleet</p>
-            </div>
-          </div>
-          
-          <ul className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#eb0028] mr-3 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>700+ sprinter vans for expedited and time-critical deliveries</span>
-            </li>
-            <li className="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#eb0028] mr-3 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>Extensive fleet of box trucks with lift gates</span>
-            </li>
-            <li className="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#eb0028] mr-3 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>Professional drivers trained in secure transportation protocols</span>
-            </li>
-            <li className="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#eb0028] mr-3 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>Custom handling equipment for high-value shipments</span>
-            </li>
-          </ul>
-        </div>
-        
-        <div className="bg-gray-50 rounded-xl p-4 shadow-lg md:col-span-2">
-          <div className="flex items-center mb-3">
-            <div className="w-10 h-10 rounded-full bg-[#eb0028] flex items-center justify-center text-white mr-3">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-[#eb0028]">Why Choose USKO for Expeditors International?</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="border-l-4 border-[#eb0028] pl-3">
-              <h4 className="font-semibold text-gray-800 mb-1 text-sm">Security First</h4>
-              <p className="text-gray-700 text-xs">Our professional drivers and comprehensive security protocols ensure your valuable IT assets are protected throughout transit.</p>
-            </div>
-            <div className="border-l-4 border-[#eb0028] pl-3">
-              <h4 className="font-semibold text-gray-800 mb-1 text-sm">Tech Expertise</h4>
-              <p className="text-gray-700 text-xs">Specialized equipment and trained personnel for handling sensitive electronics and server equipment.</p>
-            </div>
-            <div className="border-l-4 border-[#eb0028] pl-3">
-              <h4 className="font-semibold text-gray-800 mb-1 text-sm">Global Reach</h4>
-              <p className="text-gray-700 text-xs">Seamless cross-border operations through our Monterrey branch and established European network.</p>
-            </div>
-          </div>
-        </div>
-
-        {/* White Glove Service Video Showcase */}
-        <div className="bg-gray-50 rounded-xl p-6 shadow-lg relative mt-6 md:col-span-2">
-          <div className="flex items-center mb-4">
-            <div className="w-12 h-12 rounded-full bg-[#eb0028] flex items-center justify-center text-white mr-4">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-[#eb0028]">White Glove Service In Action</h3>
-          </div>
-          <div className="max-w-3xl mx-auto">
-            <div className="aspect-w-16 aspect-h-7 rounded-lg overflow-hidden shadow-lg">
-              <video 
-                className="w-full h-full object-cover"
-                controls
-                muted
-                loop
-                playsInline
-                preload="metadata"
-              >
-                <source src="https://imgur.com/mWAYZ8u.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-            <p className="text-sm text-gray-500 text-center italic mt-2">USKO's white glove service demonstration</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>,
-
-  // Network Coverage
-  <section className="flex flex-col justify-center items-center px-8 md:px-24 py-4 md:py-8 bg-white min-h-screen">
-    <div className="max-w-6xl mx-auto w-full">
-      <div className="bg-[#eb0028]/10 p-3 md:p-4 rounded-lg border border-[#eb0028]/30 mb-4 md:mb-6 text-center">
-        <h1 className="text-3xl md:text-5xl font-extrabold text-[#eb0028] mb-2 text-center tracking-tight">Our <span className="text-black">Branch Network</span></h1>
-        <h2 className="text-lg md:text-2xl text-gray-700 text-center max-w-3xl mx-auto font-semibold">Strategic Locations Across North America and Europe</h2>
-      </div>
-      
-      <div className="mt-4 md:mt-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
-          <div className="bg-gray-50 p-3 md:p-4 rounded-xl shadow-lg flex flex-col items-center">
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#eb0028] flex items-center justify-center text-white mb-3">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-7 md:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-            </div>
-            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2">United States</h3>
-            <ul className="space-y-2 w-full">
-              <li className="flex justify-between bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
-                <span className="text-gray-700 font-medium text-sm">West Sacramento, CA</span>
-                <span className="font-medium text-sm">Branch</span>
-              </li>
-              <li className="flex justify-between bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
-                <span className="text-gray-700 font-medium text-sm">Roseville, CA (HQ)</span>
-                <span className="font-medium text-sm">Branch</span>
-              </li>
-              <li className="flex justify-between bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
-                <span className="text-gray-700 font-medium text-sm">Chicago, IL</span>
-                <span className="font-medium text-sm">Branch</span>
-              </li>
-              <li className="flex justify-between bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
-                <span className="text-gray-700 font-medium text-sm">St Marys, GA</span>
-                <span className="font-medium text-sm">Branch</span>
-              </li>
-              <li className="flex justify-between bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
-                <span className="text-gray-700 font-medium text-sm">Houston, TX</span>
-                <span className="font-medium text-sm">Branch</span>
-              </li>
-              <li className="flex justify-between bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
-                <span className="text-gray-700 font-medium text-sm">Sacramento, CA</span>
-                <span className="font-medium text-sm">Warehouse</span>
-              </li>
-            </ul>
-          </div>
-          
-          <div className="bg-gray-50 p-3 md:p-4 rounded-xl shadow-lg flex flex-col items-center">
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#eb0028] flex items-center justify-center text-white mb-3">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-7 md:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2">Europe</h3>
-            <ul className="space-y-2 w-full">
-              <li className="flex justify-between bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
-                <span className="text-gray-700 font-medium text-sm">Warsaw, Poland</span>
-                <span className="font-medium text-sm">Branch</span>
-              </li>
-              <li className="flex justify-between bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
-                <span className="text-gray-700 font-medium text-sm">Kyiv, Ukraine</span>
-                <span className="font-medium text-sm">Branch</span>
-              </li>
-              <li className="flex justify-between bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
-                <span className="text-gray-700 font-medium text-sm">Odesa, Ukraine</span>
-                <span className="font-medium text-sm">Branch</span>
-              </li>
-            </ul>
-          </div>
-          
-          <div className="bg-gray-50 p-3 md:p-4 rounded-xl shadow-lg flex flex-col items-center">
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#eb0028] flex items-center justify-center text-white mb-3">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-7 md:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-            <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2">Latin America</h3>
-            <ul className="space-y-2 w-full">
-              <li className="flex justify-between bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
-                <span className="text-gray-700 font-medium text-sm">Monterrey, Mexico</span>
-                <span className="font-medium text-sm">Branch</span>
-              </li>
-              <li className="flex items-center bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
-                <span className="text-gray-700 text-sm">Daily cross-border operations with the US</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-        <div className="mt-4 bg-[#eb0028]/5 p-4 rounded-xl border border-[#eb0028]/20 shadow-lg text-center">
-          <p className="text-gray-700 text-sm">
-            All USKO branches are strategically positioned to provide optimal coverage for Expeditors International shipments.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>,
-
-  // Sacramento Warehouse Capacity - New Slide
-  <section className="flex flex-col justify-center items-center p-6 bg-white min-h-screen">
-    <div className="max-w-6xl mx-auto w-full">
-      <div className="bg-gradient-to-r from-[#eb0028] to-[#ff1a3d] p-6 rounded-2xl shadow-2xl mb-8 transform hover:scale-[1.02] transition-all duration-300">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-2 text-center tracking-tight">Sacramento <span className="text-gray-100">Warehouse Capacity</span></h1>
-        <h2 className="text-xl md:text-2xl text-gray-100 text-center max-w-3xl mx-auto font-semibold">Our Flexible Storage & Distribution Solutions</h2>
-      </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Core Services Card */}
-        <div className="bg-white rounded-2xl p-6 shadow-[0_4px_20px_rgba(235,0,40,0.1)] hover:shadow-[0_4px_25px_rgba(235,0,40,0.15)] transition-all duration-300 border border-gray-100">
-          <div className="flex items-center mb-4">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#eb0028] to-[#ff1a3d] flex items-center justify-center text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-gray-800 ml-4">Core Services</h3>
-          </div>
-          <div className="space-y-3">
-            {[
-              'Short-Term & Long-Term Storage',
-              'Cross-Docking & Transloading',
-              'Container Drayage (Port to Warehouse)',
-              'Container Unloading & Palletization',
-              'Repacking & Restacking Damaged Goods',
-              'Local & Regional Deliveries'
-            ].map((service, index) => (
-              <div key={index} className="flex items-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200">
-                <div className="w-2 h-2 rounded-full bg-[#eb0028] mr-3"></div>
-                <span className="text-gray-700">{service}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Additional Services Card */}
-        <div className="bg-white rounded-2xl p-6 shadow-[0_4px_20px_rgba(235,0,40,0.1)] hover:shadow-[0_4px_25px_rgba(235,0,40,0.15)] transition-all duration-300 border border-gray-100">
-          <div className="flex items-center mb-4">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#eb0028] to-[#ff1a3d] flex items-center justify-center text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-            </div>
-            <div className="ml-4">
-              <h3 className="text-xl font-bold text-gray-800">Additional Services</h3>
-              <p className="text-sm text-gray-500">INCLUDE:</p>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-3">
-            {[
-              'Freight consolidation',
-              'Container unloading',
-              'Product repacking',
-              'Inventory management',
-              'Pick and pack services',
-              'Palletizing and wrapping',
-              'Labeling and barcoding',
-              'Order fulfillment',
-              'Climate-controlled storage',
-              'Seasonal storage options'
-            ].map((service, index) => (
-              <div key={index} className="flex items-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200">
-                <div className="w-2 h-2 rounded-full bg-[#eb0028] mr-2"></div>
-                <span className="text-gray-700 text-sm">{service}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Specialized Capabilities Card */}
-        <div className="bg-gradient-to-br from-[#eb0028] to-[#ff1a3d] rounded-2xl p-6 shadow-xl md:col-span-2 transform hover:scale-[1.01] transition-all duration-300">
-          <h3 className="text-xl font-bold text-white mb-4">Specialized Capabilities</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[
-              {
-                icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10" />
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 hover:scale-105 transition-all duration-300 border border-[#b4a577]/30">
+                <div className="w-16 h-16 rounded-full bg-[#b4a577] flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                   </svg>
-                ),
-                title: 'LTL Refrigerated Storage',
-                description: 'Temperature-controlled storage solutions for sensitive goods'
-              },
-              {
-                icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                </div>
+                <h3 className="text-xl font-semibold text-[#b4a577] mb-3 text-center">Roseville, CA</h3>
+                <p className="text-gray-300 text-sm text-center mb-4">Corporate Headquarters</p>
+                <ul className="text-gray-300 text-sm space-y-1">
+                  <li>• Executive Operations</li>
+                  <li>• West Coast Distribution Hub</li>
+                  <li>• Customer Service Center</li>
+                  <li>• Fleet Management</li>
+                </ul>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 hover:scale-105 transition-all duration-300 border border-[#b4a577]/30">
+                <div className="w-16 h-16 rounded-full bg-[#b4a577] flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-[#b4a577] mb-3 text-center">Texas Office</h3>
+                <p className="text-gray-300 text-sm text-center mb-4">Central Operations Hub</p>
+                <ul className="text-gray-300 text-sm space-y-1">
+                  <li>• Central US Coverage</li>
+                  <li>• Cross-Border Coordination</li>
+                  <li>• Regional Dispatch</li>
+                  <li>• Strategic Planning</li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-[#b4a577]/20 to-[#b4a577]/10 backdrop-blur-lg rounded-xl p-6 hover:scale-105 transition-all duration-300 border-2 border-[#b4a577]/50 relative overflow-hidden">
+                <div className="absolute top-2 right-2 bg-[#b4a577] text-white text-xs px-2 py-1 rounded-full font-bold">
+                  KEY ADVANTAGE
+                </div>
+                <div className="w-16 h-16 rounded-full bg-[#b4a577] flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-[#b4a577] mb-3 text-center">Monterrey, Mexico</h3>
+                <p className="text-gray-300 text-sm text-center mb-4">Mexico Operations Center</p>
+                <ul className="text-gray-300 text-sm space-y-1">
+                  <li>• <span className="text-[#b4a577] font-semibold">Your Pet Food Mexico support</span></li>
+                  <li>• Cross-Border Expertise</li>
+                  <li>• Local Distribution Network</li>
+                  <li>• Customs & Compliance</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-12 bg-gradient-to-r from-[#b4a577]/20 to-[#b4a577]/10 backdrop-blur-lg rounded-xl p-6 border border-[#b4a577]/30">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 rounded-full bg-[#b4a577] flex items-center justify-center mr-4">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
-                ),
-                title: 'Refrigerated Local Deliveries',
-                description: '100+ mile radius coverage area'
-              },
-              {
-                icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                  </svg>
-                ),
-                title: 'Climate-Controlled Storage',
-                description: 'Specialized storage for temperature-sensitive items'
-              }
-            ].map((capability, index) => (
-              <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-colors duration-200">
-                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-[#eb0028] mb-3">
-                  {capability.icon}
                 </div>
-                <h4 className="text-lg font-semibold text-white mb-2">{capability.title}</h4>
-                <p className="text-gray-100 text-sm">{capability.description}</p>
+                <h3 className="text-xl font-semibold text-[#b4a577]">Monterrey Advantage for Diamond Pet Food</h3>
               </div>
-            ))}
+              <p className="text-gray-300 leading-relaxed">
+                Our <span className="text-[#b4a577] font-semibold">Monterrey, Mexico presence</span> positions USKO perfectly to support Diamond Pet Food's 
+                <span className="text-[#b4a577] font-semibold"> Mexico operations</span>. With local expertise, established relationships, and 
+                cross-border logistics capabilities, we can seamlessly handle your Mexican market distribution needs while ensuring compliance 
+                with all local regulations and customs requirements.
+              </p>
+            </div>
           </div>
-        </div>
+        </section>
+      )
+    },
 
-        {/* Statement Card */}
-        <div className="bg-gray-50 rounded-2xl p-6 shadow-lg md:col-span-2 border border-gray-100">
-          <div className="flex items-center mb-4">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#eb0028] to-[#ff1a3d] flex items-center justify-center text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-gray-800 ml-4">Statement</h3>
-          </div>
-          <p className="text-gray-700 leading-relaxed">
-            Our warehouse, centrally located in the Sacramento, CA area, provides flexible short-term and long-term storage solutions tailored to your logistics needs. We offer a full range of services including cross-docking, transloading, repacking, and local deliveries within a 350-mile radius. We also specialize in LTL refrigerated product storage and refrigerated deliveries within a 100+ mile radius across California.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>,
-
-  // Geodis/IBM Custom Slide
-  <section className="flex flex-col justify-center items-center p-6 bg-white">
-    <div className="max-w-6xl mx-auto w-full">
-      <h1 className="text-4xl md:text-5xl font-extrabold text-[#eb0028] mb-2 text-center tracking-tight">Partnering with <span className="text-black">Expeditors International</span></h1>
-      <h2 className="text-xl md:text-2xl text-gray-700 mb-5 text-center max-w-2xl mx-auto font-semibold">Custom Logistics Solutions for Your Business</h2>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-        <div className="bg-gray-50 p-4 rounded-xl shadow-lg">
-          <h3 className="text-lg font-semibold text-[#eb0028] mb-3">Our Value Proposition</h3>
-          <ul className="space-y-3">
-            <li className="flex">
-              <div className="w-8 h-8 rounded-full bg-[#eb0028] flex-shrink-0 flex items-center justify-center text-white mr-3">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-800 mb-0.5 text-sm">Secure Transportation</h4>
-                <p className="text-gray-700 text-xs">Our professional drivers and comprehensive security protocols ensure your valuable IT assets are protected throughout transit.</p>
-              </div>
-            </li>
-            <li className="flex">
-              <div className="w-8 h-8 rounded-full bg-[#eb0028] flex-shrink-0 flex items-center justify-center text-white mr-3">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-800 mb-0.5 text-sm">White Glove Service</h4>
-                <p className="text-gray-700 text-xs">Specialized lift gate equipment, inside delivery, unpacking, and debris removal for precision deliveries.</p>
-              </div>
-            </li>
-            <li className="flex">
-              <div className="w-8 h-8 rounded-full bg-[#eb0028] flex-shrink-0 flex items-center justify-center text-white mr-3">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-800 mb-0.5 text-sm">Transparent Documentation</h4>
-                <p className="text-gray-700 text-xs">Comprehensive chain of custody records, detailed proof of delivery, and real-time tracking for all shipments.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        
-        <div className="space-y-6">
-          <div className="bg-gray-50 p-6 rounded-xl shadow-lg">
-            <h3 className="text-2xl font-semibold text-[#eb0028] mb-4">Key Benefits for Expeditors International</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
-                <div className="w-12 h-12 rounded-full bg-[#eb0028]/10 flex items-center justify-center mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#eb0028]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-800 mb-1">Time-Definite Delivery</h4>
-                <p className="text-gray-700 text-sm">99.3% on-time performance for critical IT equipment deployments</p>
-              </div>
-              <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
-                <div className="w-12 h-12 rounded-full bg-[#eb0028]/10 flex items-center justify-center mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#eb0028]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-800 mb-1">Security Protocols</h4>
-                <p className="text-gray-700 text-sm">Comprehensive security measures and trained teams ensuring safe transport</p>
-              </div>
-              <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
-                <div className="w-12 h-12 rounded-full bg-[#eb0028]/10 flex items-center justify-center mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#eb0028]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-800 mb-1">Scalable Capacity</h4>
-                <p className="text-gray-700 text-sm">Dedicated fleet ensures availability during high-demand periods</p>
-              </div>
-              <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
-                <div className="w-12 h-12 rounded-full bg-[#eb0028]/10 flex items-center justify-center mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#eb0028]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-800 mb-1">Regulatory Compliance</h4>
-                <p className="text-gray-700 text-sm">TSA certified teams ensuring security protocols are followed</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-[#eb0028]/5 p-6 rounded-xl border border-[#eb0028]/20">
-            <div className="flex items-center mb-3">
-              <div className="w-10 h-10 rounded-full bg-[#eb0028] flex items-center justify-center text-white mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-[#eb0028]">Did You Know?</h3>
-            </div>
-            <p className="text-gray-700">USKO's new Monterrey branch specializes in cross-border logistics between the US and Mexico, with dedicated professional drivers and specialists to ensure seamless transportation for multinational operations.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>,
-
-  // Closing Slide
-  <section className="flex flex-col justify-center items-center px-3 py-4 md:p-8 pb-16 bg-white min-h-screen">
-    <div className="max-w-6xl mx-auto w-full">
-      <div className="text-center mb-6 md:mb-8">
-        <h1 className="text-3xl md:text-5xl font-extrabold text-[#eb0028] mb-3 md:mb-4">Ready to Transform Your <span className="text-black">Logistics Experience?</span></h1>
-        <h2 className="text-lg md:text-2xl text-gray-700 mb-4 md:mb-6 max-w-3xl mx-auto font-semibold">
-          Partner with USKO to elevate Expeditors International's transportation capabilities with our specialized fleet and white glove delivery teams.
-        </h2>
-      </div>
-
-      {/* USKO Family of Companies Section */}
-      <div className="bg-[#eb0028]/5 p-4 md:p-6 rounded-xl border border-[#eb0028]/20 shadow-lg mx-auto max-w-3xl mb-6 md:mb-8">
-        <div className="flex items-center mb-4">
-          <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#eb0028] flex items-center justify-center text-white mr-3 md:mr-4">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-          </div>
-          <h3 className="text-lg md:text-xl font-semibold text-[#eb0028]">USKO Family of Companies</h3>
-        </div>
-        <div className="space-y-4">
-          {/* Tree/Org Chart Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-            {/* USKO Logistics Inc - Top Center */}
-            <div className="bg-white p-3 md:p-4 rounded-lg border border-gray-100 shadow-sm col-span-1 md:col-span-2 mx-auto w-full md:w-[338.89px]">
-              <p className="font-bold text-gray-800 text-center text-sm md:text-base">USKO LOGISTICS INC</p>
-              <div className="flex justify-between mt-1 text-xs md:text-sm">
-                <span className="text-gray-600">MC Number:</span>
-                <span className="font-semibold text-gray-800">728260</span>
-              </div>
-              <div className="flex justify-between text-xs md:text-sm">
-                <span className="text-gray-600">US DOT Number:</span>
-                <span className="font-semibold text-gray-800">2337754</span>
-              </div>
-            </div>
-            
-            {/* Vertical Line Connector */}
-            <div className="col-span-1 md:col-span-2 h-4 md:h-8 flex justify-center">
-              <div className="w-px h-full bg-[#eb0028]/20"></div>
-            </div>
-            
-            {/* USKO Expedite and Express - Side by Side */}
-            <div className="bg-white p-3 md:p-4 rounded-lg border border-gray-100 shadow-sm">
-              <p className="font-bold text-gray-800 text-center text-sm md:text-base">USKO EXPEDITE INC</p>
-              <div className="flex justify-between mt-1 text-xs md:text-sm">
-                <span className="text-gray-600">MC Number:</span>
-                <span className="font-semibold text-gray-800">746242</span>
-              </div>
-              <div className="flex justify-between text-xs md:text-sm">
-                <span className="text-gray-600">US DOT Number:</span>
-                <span className="font-semibold text-gray-800">307593</span>
-              </div>
-            </div>
-            <div className="bg-white p-3 md:p-4 rounded-lg border border-gray-100 shadow-sm">
-              <p className="font-bold text-gray-800 text-center text-sm md:text-base">USKO EXPRESS INC</p>
-              <div className="flex justify-between mt-1 text-xs md:text-sm">
-                <span className="text-gray-600">MC Number:</span>
-                <span className="font-semibold text-gray-800">563453</span>
-              </div>
-              <div className="flex justify-between text-xs md:text-sm">
-                <span className="text-gray-600">US DOT Number:</span>
-                <span className="font-semibold text-gray-800">1499885</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
-        <div className="bg-gray-50 rounded-xl p-4 md:p-6 shadow-lg text-center">
-          <div className="mx-auto w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#eb0028] flex items-center justify-center text-white mb-3 md:mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
-          </div>
-          <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2">Contact Us</h3>
-          <p className="text-sm md:text-base text-gray-700 mb-3">Speak with our sales team member</p>
-          <p className="font-bold text-[#eb0028] text-base md:text-lg">+1 (916) 849-2156</p>
-        </div>
-        
-        <div className="bg-gray-50 rounded-xl p-4 md:p-6 shadow-lg text-center">
-          <div className="mx-auto w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#eb0028] flex items-center justify-center text-white mb-3 md:mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-          </div>
-          <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2">Email</h3>
-          <p className="text-sm md:text-base text-gray-700 mb-3">For RFQ and RFI opportunities email:</p>
-          <p className="font-bold text-[#eb0028] text-base md:text-lg">ron@uskoinc.com</p>
-        </div>
-        
-        <div className="bg-gray-50 rounded-xl p-4 md:p-6 shadow-lg text-center">
-          <div className="mx-auto w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#eb0028] flex items-center justify-center text-white mb-3 md:mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-          </div>
-          <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2">California Office</h3>
-          <p className="text-sm md:text-base text-gray-700 mb-3">Our main West Coast facility</p>
-          <div className="flex flex-col items-center">
-            <p className="font-bold text-[#eb0028] text-base">1101 CREEKSIDE RIDGE DR STE&nbsp;270</p>
-            <p className="font-bold text-[#eb0028] text-base">ROSEVILLE, CA 95678</p>
-          </div>
-        </div>
-      </div>
-      
-      <div className="text-center mt-4 md:mt-6 mb-8 md:mb-12">
-        <img src="https://i.imgur.com/J2ME1ji.png" alt="USKO Logo" className="w-48 md:w-64 mx-auto mb-4" />
-        <h4 className="text-xl md:text-2xl font-bold text-[#eb0028]">Logistics. Delivered. <span className="text-black">Exceptionally.</span></h4>
-      </div>
-    </div>
-  </section>,
-];
-
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 800,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: true,
-  adaptiveHeight: true,
-  nextArrow: <NextArrow />,
-  prevArrow: <PrevArrow />,
-  autoplay: false,
-  pauseOnHover: true,
-  cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
-  dotsClass: "slick-dots custom-dots",
-  responsive: [
+    // Slide 4: Geographic Coverage
     {
-      breakpoint: 768,
-      settings: {
-        arrows: false,
-        dots: true,
-        adaptiveHeight: true,
-        swipe: true,
-        touchMove: true,
-        speed: 600
-      }
-    }
-  ],
-  lazyLoad: true,
-  fade: false,
-  swipe: true,
-  touchMove: true
-};
+      id: "coverage",
+      content: (
+        <section className="flex flex-col justify-center items-center px-4 py-16 min-h-screen relative">
+          <div className="max-w-6xl mx-auto w-full z-10">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Global <span className="text-[#b4a577]">Coverage</span></h2>
+              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">Comprehensive logistics solutions spanning multiple continents</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 hover:scale-105 transition-all duration-300 border border-[#b4a577]/30">
+                <div className="w-12 h-12 rounded-full bg-[#b4a577] flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-[#b4a577] mb-2">North America</h3>
+                <p className="text-gray-300 text-sm">Nationwide coverage across the United States and Canada with dedicated routes and strategic partnerships.</p>
+              </div>
 
-const USKOPitchDeck = () => (
-  <div className="bg-white w-full min-h-screen">
-    <Slider {...settings}>
-      {slides.map((slide, idx) => (
-        <div key={idx} className="relative min-h-screen">
-          {slide}
-          <div className="page-indicator absolute bottom-2 right-2 bg-white/80 px-2 py-1 rounded-full text-sm">
-            <span className="text-[#eb0028] font-bold">{idx + 1}</span>
-            <span className="mx-1 text-gray-400">/</span>
-            <span className="text-gray-500">{slides.length}</span>
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 hover:scale-105 transition-all duration-300 border border-[#b4a577]/30">
+                <div className="w-12 h-12 rounded-full bg-[#b4a577] flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-[#b4a577] mb-2">Mexico & Central America</h3>
+                <p className="text-gray-300 text-sm">Specialized cross-border operations with expertise in customs clearance and regional distribution networks.</p>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 hover:scale-105 transition-all duration-300 border border-[#b4a577]/30">
+                <div className="w-12 h-12 rounded-full bg-[#b4a577] flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-[#b4a577] mb-2">South America</h3>
+                <p className="text-gray-300 text-sm">Growing presence in key South American markets with reliable shipping partnerships and local expertise.</p>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 hover:scale-105 transition-all duration-300 border border-[#b4a577]/30">
+                <div className="w-12 h-12 rounded-full bg-[#b4a577] flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-[#b4a577] mb-2">Europe & Overseas</h3>
+                <p className="text-gray-300 text-sm">International shipping capabilities to Europe and other global markets with comprehensive logistics support.</p>
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
-    </Slider>
-  </div>
-);
+        </section>
+      )
+    },
+
+    // Slide 5: Transportation Assets
+    {
+      id: "assets",
+      content: (
+        <section className="flex flex-col md:flex-row items-center justify-center gap-10 px-4 py-16 relative min-h-screen">
+          <div className="flex-1 z-10">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Transportation <span className="text-[#b4a577]">Assets</span></h2>
+            <p className="text-lg text-gray-300 mb-8">USKO's specialized fleet includes full truckload, LTL, and international distribution solutions. Professional drivers and real-time tracking ensure your dry pet food products arrive safely and on time.</p>
+            
+            <div className="space-y-4 mb-8">
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
+                <h3 className="text-lg font-semibold text-[#b4a577] mb-2">Full Truckload & LTL Services</h3>
+                <p className="text-gray-300 text-sm">Flexible shipping options for any volume requirement</p>
+              </div>
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
+                <h3 className="text-lg font-semibold text-[#b4a577] mb-2">International Distribution</h3>
+                <p className="text-gray-300 text-sm">Seamless cross-border and overseas shipping coordination</p>
+              </div>
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
+                <h3 className="text-lg font-semibold text-[#b4a577] mb-2">Advanced Scheduling & Tracking</h3>
+                <p className="text-gray-300 text-sm">Real-time visibility and proactive communication</p>
+              </div>
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
+                <h3 className="text-lg font-semibold text-[#b4a577] mb-2">Full Customer Service Support</h3>
+                <p className="text-gray-300 text-sm">Dedicated staff for scheduling appointments, tracking & trace, with single POC for all issues</p>
+              </div>
+            </div>
+          </div>
+          <div className="flex-1 flex flex-col gap-6 z-10">
+            <img src="https://imgur.com/5MNmizZ.jpg" alt="USKO Truck" className="w-full h-48 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
+            <img src="https://imgur.com/WyZyHpc.jpg" alt="USKO International Shipping" className="w-full h-40 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
+          </div>
+        </section>
+      )
+    },
+
+    // Slide 6: Value Proposition
+    {
+      id: "value",
+      content: (
+        <section className="flex flex-col justify-center items-center px-4 py-16 min-h-screen relative">
+          <div className="max-w-6xl mx-auto w-full z-10">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Our <span className="text-[#b4a577]">Value Proposition</span></h2>
+              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">Why Choose USKO for Diamond Pet Food?</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
+                <h3 className="text-xl font-semibold text-[#b4a577] mb-3">Dry Pet Food Expertise</h3>
+                <p className="text-gray-300">Specialized handling and transportation of dry pet food products with proper storage and distribution protocols.</p>
+              </div>
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
+                <h3 className="text-xl font-semibold text-[#b4a577] mb-3">Advanced Scheduling System</h3>
+                <p className="text-gray-300">Efficient coordination between manufacturing facilities and delivery points with real-time updates and tracking.</p>
+              </div>
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 shadow-lg transform hover:scale-[1.02] transition-all duration-300">
+                <h3 className="text-xl font-semibold text-[#b4a577] mb-3">Global Distribution Network</h3>
+                <p className="text-gray-300">Comprehensive coverage across North America, Mexico, South America, and overseas markets including Europe.</p>
+              </div>
+            </div>
+            
+            <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 shadow-lg mb-8">
+              <h3 className="text-xl font-semibold text-[#b4a577] mb-4">Key Benefits for Diamond Pet Food</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="border-l-4 border-[#b4a577] pl-4">
+                  <h4 className="font-semibold text-white mb-1">Asset-Based 3PL</h4>
+                  <p className="text-gray-300 text-sm">Dedicated fleet and resources for reliable dry pet food transportation.</p>
+                </div>
+                <div className="border-l-4 border-[#b4a577] pl-4">
+                  <h4 className="font-semibold text-white mb-1">Full Service Support</h4>
+                  <p className="text-gray-300 text-sm">Complete customer service staff for scheduling, tracking & trace, with single POC.</p>
+                </div>
+                <div className="border-l-4 border-[#b4a577] pl-4">
+                  <h4 className="font-semibold text-white mb-1">Strategic Locations</h4>
+                  <p className="text-gray-300 text-sm">Corporate offices in Roseville and Texas for comprehensive coverage.</p>
+                </div>
+                <div className="border-l-4 border-[#b4a577] pl-4">
+                  <h4 className="font-semibold text-white mb-1">International Reach</h4>
+                  <p className="text-gray-300 text-sm">Expertise in Mexico, South America, and overseas export logistics.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-[#b4a577]/20 to-[#b4a577]/10 backdrop-blur-lg rounded-xl p-6 border border-[#b4a577]/30">
+              <div className="flex items-center mb-3">
+                <div className="w-8 h-8 rounded-full bg-[#b4a577] flex items-center justify-center mr-3">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-[#b4a577]">Did You Know?</h3>
+              </div>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                We understand Diamond Pet Food also manufactures <span className="text-[#b4a577] font-semibold">Kirkland Signature pet food for Costco</span>. 
+                USKO already delivers to Costco locations for our other customers, making the transition seamless for your Kirkland Signature product line. 
+                Our existing Costco relationships and delivery protocols ensure smooth operations from day one.
+              </p>
+            </div>
+          </div>
+        </section>
+      )
+    },
+
+    // Slide 7: Contact
+    {
+      id: "contact",
+      content: (
+        <section className="flex flex-col items-center justify-center px-4 py-16 min-h-screen relative">
+          <div className="z-10 max-w-4xl w-full text-center">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Ready to Transform Your <span className="text-[#b4a577]">Logistics?</span></h2>
+            <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto">Partner with USKO to elevate Diamond Pet Food's distribution capabilities with our specialized fleet and global network.</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-[#b4a577]/30 shadow-lg hover:scale-105 transition-all duration-300">
+                <div className="w-12 h-12 rounded-full bg-[#b4a577] flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <h3 className="text-[#b4a577] font-bold text-lg mb-2">Contact Us</h3>
+                <a href="tel:1-800-USKO-LOG" className="text-[#b4a577] font-bold text-lg hover:text-white transition-colors duration-300">(916) 123-4567</a>
+              </div>
+              
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-[#b4a577]/30 shadow-lg hover:scale-105 transition-all duration-300">
+                <div className="w-12 h-12 rounded-full bg-[#b4a577] flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-[#b4a577] font-bold text-lg mb-2">Email</h3>
+                <a href="mailto:ron@uskoinc.com" className="text-[#b4a577] font-bold text-lg hover:text-white transition-colors duration-300">ron@uskoinc.com</a>
+              </div>
+              
+              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-[#b4a577]/30 shadow-lg hover:scale-105 transition-all duration-300">
+                <div className="w-12 h-12 rounded-full bg-[#b4a577] flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-[#b4a577] font-bold text-lg mb-2">Corporate Offices</h3>
+                <p className="text-gray-300 text-sm">Roseville, CA<br />Texas Office</p>
+              </div>
+            </div>
+            
+            <div className="flex flex-row items-center justify-center gap-8 mb-8">
+              <img src="https://i.imgur.com/J2ME1ji.png" alt="USKO Logo" className="h-16 drop-shadow-lg bg-white/10 rounded-xl p-2" />
+              <img src="https://www.diamondpet.com/wp-content/uploads/2019/01/Diamond-Logo_rev-1.png" alt="Diamond Pet Food Logo" className="h-16 drop-shadow-lg bg-white/10 rounded-xl p-2" />
+            </div>
+            
+            <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Logistics. Delivered. <span className="text-[#b4a577]">Exceptionally.</span></h3>
+          </div>
+        </section>
+      )
+    }
+  ];
+
+  const goToSlide = useCallback((index) => {
+    if (index !== currentSlide && !isTransitioning) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentSlide(index);
+        setIsTransitioning(false);
+      }, 150);
+    }
+  }, [currentSlide, isTransitioning]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [nextSlide, prevSlide]);
+
+  return (
+    <div className="bg-gradient-to-br from-black via-[#181818] to-gray-900 min-h-screen w-full font-sans relative overflow-hidden">
+      {/* Slide Content */}
+      <div className={`transition-all duration-300 ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+        {slides[currentSlide].content}
+      </div>
+
+      {/* Navigation Arrows */}
+      {currentSlide > 0 && (
+        <button
+          onClick={prevSlide}
+          className="fixed left-4 top-1/2 transform -translate-y-1/2 z-50 w-12 h-12 bg-[#b4a577]/80 hover:bg-[#b4a577] rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+          disabled={isTransitioning}
+        >
+          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+      )}
+
+      {currentSlide < slides.length - 1 && (
+        <button
+          onClick={nextSlide}
+          className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 w-12 h-12 bg-[#b4a577]/80 hover:bg-[#b4a577] rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+          disabled={isTransitioning}
+        >
+          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      )}
+
+      {/* Page Indicator */}
+      <div className="fixed bottom-4 right-4 z-50 bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2">
+        <span className="text-[#b4a577] font-bold text-sm">{currentSlide + 1}</span>
+        <span className="text-gray-400 text-sm">/</span>
+        <span className="text-gray-300 text-sm">{slides.length}</span>
+      </div>
+
+      {/* Slide Dots Navigation */}
+      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 flex space-x-2">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentSlide 
+                ? 'bg-[#b4a577] scale-125' 
+                : 'bg-white/30 hover:bg-white/50'
+            }`}
+            disabled={isTransitioning}
+          />
+        ))}
+      </div>
+
+      {/* Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 bg-black/20 z-50">
+        <div 
+          className="h-full bg-[#b4a577] transition-all duration-300"
+          style={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}
+        />
+      </div>
+    </div>
+  );
+};
 
 export default USKOPitchDeck; 
