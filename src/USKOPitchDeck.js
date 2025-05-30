@@ -223,15 +223,12 @@ const USKOPitchDeck = () => {
                 <h3 className="text-lg font-semibold text-[#b4a577] mb-2">Advanced Scheduling & Tracking</h3>
                 <p className="text-gray-300 text-sm">Real-time visibility and proactive communication across our entire fleet</p>
               </div>
-              <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
-                <h3 className="text-lg font-semibold text-[#b4a577] mb-2">Full Customer Service Support</h3>
-                <p className="text-gray-300 text-sm">Dedicated staff for scheduling appointments, tracking & trace, with single POC for all issues</p>
-              </div>
             </div>
           </div>
-          <div className="flex-1 flex flex-col gap-6 z-10">
-            <img src="https://imgur.com/5MNmizZ.jpg" alt="USKO Truck" className="w-full h-48 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
-            <img src="https://imgur.com/WyZyHpc.jpg" alt="USKO International Shipping" className="w-full h-40 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
+          <div className="flex-1 flex flex-col gap-4 z-10">
+            <img src="https://i.imgur.com/H7F2rk9.png" alt="USKO Logistics Truck" className="w-full rounded-lg shadow-lg object-cover hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
+            <img src="https://i.imgur.com/qwerty123.png" alt="USKO Fleet" className="w-full rounded-lg shadow-lg object-cover hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
+            <img src="https://imgur.com/TptDEQk.jpg" alt="USKO Transportation" className="w-full rounded-lg shadow-lg object-cover hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
           </div>
         </section>
       )
