@@ -4,26 +4,6 @@ const USKOPitchDeck = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const nextSlide = useCallback(() => {
-    if (currentSlide < slides.length - 1 && !isTransitioning) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentSlide(currentSlide + 1);
-        setIsTransitioning(false);
-      }, 150);
-    }
-  }, [currentSlide, isTransitioning, slides.length]);
-
-  const prevSlide = useCallback(() => {
-    if (currentSlide > 0 && !isTransitioning) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentSlide(currentSlide - 1);
-        setIsTransitioning(false);
-      }, 150);
-    }
-  }, [currentSlide, isTransitioning]);
-
   const slides = [
     // Slide 1: Title
     {
@@ -377,6 +357,26 @@ const USKOPitchDeck = () => {
       )
     }
   ];
+
+  const nextSlide = useCallback(() => {
+    if (currentSlide < slides.length - 1 && !isTransitioning) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentSlide(currentSlide + 1);
+        setIsTransitioning(false);
+      }, 150);
+    }
+  }, [currentSlide, isTransitioning, slides.length]);
+
+  const prevSlide = useCallback(() => {
+    if (currentSlide > 0 && !isTransitioning) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentSlide(currentSlide - 1);
+        setIsTransitioning(false);
+      }, 150);
+    }
+  }, [currentSlide, isTransitioning]);
 
   const goToSlide = useCallback((index) => {
     if (index !== currentSlide && !isTransitioning) {
