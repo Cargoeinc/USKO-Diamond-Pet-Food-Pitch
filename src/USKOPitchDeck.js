@@ -311,6 +311,10 @@ const USKOPitchDeck = () => {
                 We understand Diamond Pet Food also manufactures <span className="text-[#b4a577] font-semibold">Kirkland Signature pet food for Costco</span>. 
                 USKO already delivers to Costco locations for our other customers, making the transition seamless for your Kirkland Signature product line. 
                 Our existing Costco relationships and delivery protocols ensure smooth operations from day one.
+                <br /><br />
+                Additionally, we're aware of your upcoming <span className="text-[#b4a577] font-semibold">manufacturing and distribution facility in Rushville, Indiana</span>. 
+                USKO would be honored to discuss utilizing our assets there, whether it's staging trailers or having our fleet service the plant on a regular basis. 
+                Our strategic approach to asset positioning and fleet management makes us an ideal partner for your expansion.
               </p>
             </div>
           </div>
@@ -335,7 +339,7 @@ const USKOPitchDeck = () => {
                   </svg>
                 </div>
                 <h3 className="text-[#b4a577] font-bold text-lg mb-2">Contact Us</h3>
-                <a href="tel:9168492156" className="text-[#b4a577] font-bold text-lg hover:text-white transition-colors duration-300">(916) 849-2156</a>
+                <a href="tel:2142501011" className="text-[#b4a577] font-bold text-lg hover:text-white transition-colors duration-300">(214) 250-1011 ext. 1212</a>
               </div>
               
               <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-[#b4a577]/30 shadow-lg hover:scale-105 transition-all duration-300">
