@@ -225,10 +225,10 @@ const USKOPitchDeck = () => {
               </div>
             </div>
           </div>
-          <div className="flex-1 flex flex-col gap-4 z-10">
-            <img src="https://i.imgur.com/H7F2rk9.png" alt="USKO Logistics Truck" className="w-full rounded-lg shadow-lg object-cover hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
-            <img src="https://i.imgur.com/qwerty123.png" alt="USKO Fleet" className="w-full rounded-lg shadow-lg object-cover hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
-            <img src="https://imgur.com/TptDEQk.jpg" alt="USKO Transportation" className="w-full rounded-lg shadow-lg object-cover hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
+          <div className="flex-1 flex flex-col gap-6 z-10">
+            <img src="https://imgur.com/5MNmizZ.jpg" alt="USKO Truck" className="w-full h-48 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
+            <img src="https://imgur.com/WyZyHpc.jpg" alt="USKO International Shipping" className="w-full h-40 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
+            <img src="https://imgur.com/TptDEQk.jpg" alt="USKO Transportation" className="w-full h-40 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
           </div>
         </section>
       )
