@@ -12,7 +12,7 @@ const USKOPitchDeck = () => {
         setIsTransitioning(false);
       }, 150);
     }
-  }, [currentSlide, isTransitioning]);
+  }, [currentSlide, isTransitioning, slides.length]);
 
   const prevSlide = useCallback(() => {
     if (currentSlide > 0 && !isTransitioning) {
