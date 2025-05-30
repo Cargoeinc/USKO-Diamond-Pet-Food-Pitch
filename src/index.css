@@ -1,0 +1,263 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.slick-slider {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+}
+
+.slick-list, .slick-track {
+  height: auto;
+}
+
+.slick-slide > div {
+  height: auto;
+}
+
+.slick-dots {
+  bottom: 20px !important;
+  z-index: 20;
+}
+
+.slick-dots li button:before {
+  color: #eb0028;
+  opacity: 0.25;
+  font-size: 14px;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #eb0028;
+  opacity: 1;
+}
+
+section {
+  padding: 60px 60px 100px 60px;
+  position: relative;
+  max-width: 1920px;
+  margin: 0 auto;
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Make slide titles more prominent */
+section h1 {
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  font-size: 3rem;
+  line-height: 3.25rem;
+  margin-bottom: 1.5rem;
+}
+
+section h2 {
+  margin-top: 0.5rem;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  margin-bottom: 2rem;
+}
+
+section h3 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+/* Web-friendly font sizes */
+.text-xs {
+  font-size: 1rem !important;
+  line-height: 1.5rem !important;
+}
+
+.text-sm {
+  font-size: 1.125rem !important;
+  line-height: 1.75rem !important;
+}
+
+.text-base {
+  font-size: 1.25rem !important;
+  line-height: 1.875rem !important;
+}
+
+.text-lg {
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
+}
+
+.text-xl {
+  font-size: 1.75rem !important;
+  line-height: 2.25rem !important;
+}
+
+.text-2xl {
+  font-size: 2rem !important;
+  line-height: 2.5rem !important;
+}
+
+/* Page number indicator styling */
+.page-indicator {
+  position: absolute;
+  bottom: 20px;
+  right: 40px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  z-index: 10;
+}
+
+/* Arrow styling */
+.slick-prev {
+  left: 40px !important;
+  z-index: 20 !important;
+}
+
+.slick-next {
+  right: 40px !important;
+  z-index: 20 !important;
+}
+
+/* Increase spacing for better readability */
+.mb-8 {
+  margin-bottom: 2.5rem !important;
+}
+
+.mb-6 {
+  margin-bottom: 2rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+.p-8 {
+  padding: 2.5rem !important;
+}
+
+.p-6 {
+  padding: 2rem !important;
+}
+
+.p-4 {
+  padding: 1.5rem !important;
+}
+
+.gap-8 {
+  gap: 2.5rem !important;
+}
+
+.gap-6 {
+  gap: 2rem !important;
+}
+
+.gap-4 {
+  gap: 1.5rem !important;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1.5rem !important;
+}
+
+.space-y-3 > * + * {
+  margin-top: 1.25rem !important;
+}
+
+/* Icons size increases */
+.w-10 {
+  width: 3rem !important;
+}
+
+.h-10 {
+  height: 3rem !important;
+}
+
+.w-12 {
+  width: 3.5rem !important;
+}
+
+.h-12 {
+  height: 3.5rem !important;
+}
+
+.w-14 {
+  width: 4rem !important;
+}
+
+.h-14 {
+  height: 4rem !important;
+}
+
+.w-16 {
+  width: 4.5rem !important;
+}
+
+.h-16 {
+  height: 4.5rem !important;
+}
+
+/* Image sizes */
+img.w-48 {
+  width: 220px !important;
+}
+
+img.w-40 {
+  width: 180px !important;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  section {
+    padding: 40px 20px 100px 20px;
+  }
+  
+  section h1 {
+    font-size: 2.25rem !important;
+    line-height: 2.5rem !important;
+  }
+  
+  section h2 {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+  }
+  
+  .slick-dots {
+    bottom: 10px;
+  }
+}
+
+/* Custom dots for slider */
+.custom-dots {
+  bottom: 30px !important;
+}
+
+.custom-dots li button:before {
+  font-size: 12px !important;
+}
+
+/* Ensure full visibility of content */
+.h-full {
+  height: auto !important;
+}
+
+/* Add background styles */
+.bg-white {
+  background-color: white;
+} 
