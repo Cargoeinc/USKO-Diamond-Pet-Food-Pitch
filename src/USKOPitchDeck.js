@@ -14,13 +14,13 @@ const USKOPitchDeck = () => {
           <div className="z-10 flex flex-col items-center w-full max-w-[95%] sm:max-w-full">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 md:gap-8 mb-6 sm:mb-8 w-full">
               <div className="flex items-center justify-center">
-                <img src="https://i.imgur.com/J2ME1ji.png" alt="USKO Logo" className="h-14 sm:h-20 md:h-28 lg:h-32 drop-shadow-lg bg-white/10 rounded-xl p-2" />
+                <img src="https://i.imgur.com/J2ME1ji.png" alt="USKO Logo" className="h-12 sm:h-18 md:h-24 lg:h-28 drop-shadow-lg bg-white/10 rounded-xl p-2" />
               </div>
               <div className="flex items-center justify-center">
                 <span className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold text-[#b4a577] mx-1 sm:mx-2">×</span>
               </div>
               <div className="flex items-center justify-center">
-                <img src="https://www.diamondpet.com/wp-content/uploads/2019/01/Diamond-Logo_rev-1.png" alt="Diamond Pet Food Logo" className="h-16 sm:h-24 md:h-32 lg:h-40 drop-shadow-lg bg-white/10 rounded-xl p-3 sm:p-4" />
+                <img src="https://www.diamondpet.com/wp-content/uploads/2019/01/Diamond-Logo_rev-1.png" alt="Diamond Pet Food Logo" className="h-20 sm:h-28 md:h-40 lg:h-48 drop-shadow-lg bg-white/10 rounded-xl p-3 sm:p-4" />
               </div>
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold text-white text-center mb-4 tracking-tight drop-shadow px-2">Logistics. Delivered. <span className="text-[#b4a577]">Exceptionally.</span></h1>
