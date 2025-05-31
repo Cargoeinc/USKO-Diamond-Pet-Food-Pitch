@@ -9,17 +9,100 @@ const USKOPitchDeck = () => {
     {
       id: "title",
       content: (
-        <section className="flex flex-col justify-center items-center min-h-screen relative px-3 sm:px-4 py-8 sm:py-12">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNiIgc3Ryb2tlPSIjYjRhNTc3IiBzdHJva2Utb3BhY2l0eT0iLjEiLz48L2c+PC9zdmc+')] opacity-10"></div>
-          <div className="z-10 flex flex-col items-center w-full max-w-[95%] sm:max-w-full">
-            <div className="flex flex-row items-center justify-center gap-4 sm:gap-8 mb-6 sm:mb-8">
-              <img src="https://i.imgur.com/J2ME1ji.png" alt="USKO Logo" className="h-16 sm:h-24 md:h-32 drop-shadow-lg bg-white/10 rounded-xl p-2" />
-              <span className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-[#b4a577] mx-2">×</span>
-              <img src="https://www.diamondpet.com/wp-content/uploads/2019/01/Diamond-Logo_rev-1.png" alt="Diamond Pet Food Logo" className="h-16 sm:h-24 md:h-32 drop-shadow-lg bg-white/10 rounded-xl p-2" />
+        <section className="flex flex-col justify-center items-center min-h-screen relative px-4 py-8 overflow-hidden">
+          {/* Netflix-style Background */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black"></div>
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNiIgc3Ryb2tlPSIjYjRhNTc3IiBzdHJva2Utb3BhY2l0eT0iLjA1Ii8+PC9nPjwvc3ZnPg==')] opacity-20"></div>
+          
+          {/* Main Content Container */}
+          <div className="relative z-10 flex flex-col items-center w-full max-w-7xl mx-auto">
+            
+            {/* Logo Section - Netflix Style */}
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 mb-12">
+              
+              {/* USKO Logo - Reduced Size */}
+              <div className="flex flex-col items-center group">
+                <div className="relative">
+                  <div className="absolute -inset-2 bg-gradient-to-r from-[#b4a577]/15 to-[#b4a577]/10 rounded-xl blur-md opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
+                  <img 
+                    src="https://i.imgur.com/J2ME1ji.png" 
+                    alt="USKO Logo" 
+                    className="relative h-12 sm:h-14 lg:h-16 drop-shadow-lg bg-black/30 backdrop-blur-sm rounded-lg p-2 border border-[#b4a577]/20 group-hover:scale-105 transition-all duration-300" 
+                  />
+                </div>
+                <div className="mt-2 text-center">
+                  <span className="text-xs text-[#b4a577] font-medium tracking-wide uppercase">Logistics Partner</span>
+                </div>
+              </div>
+              
+              {/* Partnership Symbol - Smaller */}
+              <div className="flex items-center">
+                <div className="relative">
+                  <span className="text-2xl lg:text-3xl font-bold text-[#b4a577] drop-shadow-md opacity-70">×</span>
+                </div>
+              </div>
+              
+              {/* Diamond Pet Food Logo - MUCH LARGER and More Prominent */}
+              <div className="flex flex-col items-center group">
+                <div className="relative">
+                  {/* Enhanced glowing background effect */}
+                  <div className="absolute -inset-6 bg-gradient-to-r from-blue-600/40 via-blue-500/50 to-blue-400/40 rounded-3xl blur-2xl opacity-70 group-hover:opacity-100 transition-all duration-500"></div>
+                  <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/30 to-blue-400/30 rounded-3xl blur-lg opacity-80"></div>
+                  <div className="absolute -inset-2 bg-gradient-to-r from-blue-400/20 to-blue-300/20 rounded-2xl blur-md"></div>
+                  
+                  {/* Logo container - Much larger */}
+                  <div className="relative bg-white/98 backdrop-blur-sm rounded-3xl p-6 lg:p-8 xl:p-10 border-3 border-blue-400/60 shadow-2xl group-hover:shadow-blue-500/30 group-hover:scale-105 transition-all duration-300">
+                    <img 
+                      src="https://www.diamondpet.com/wp-content/uploads/2019/01/Diamond-Logo_rev-1.png" 
+                      alt="Diamond Pet Food Logo" 
+                      className="h-32 sm:h-40 lg:h-52 xl:h-60 object-contain" 
+                    />
+                  </div>
+                  
+                  {/* Premium badge overlay */}
+                  <div className="absolute -top-3 -right-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg animate-pulse">
+                    CLIENT
+                  </div>
+                </div>
+                
+                {/* Enhanced label with more prominence */}
+                <div className="mt-6 text-center">
+                  <div className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 text-white px-6 py-3 rounded-full text-base lg:text-lg font-black tracking-wider uppercase shadow-xl border-2 border-blue-400/50">
+                    Primary Partner
+                  </div>
+                  <div className="w-32 h-1.5 bg-gradient-to-r from-blue-500 via-blue-400 to-blue-500 mt-3 mx-auto rounded-full shadow-lg"></div>
+                  <div className="w-20 h-0.5 bg-gradient-to-r from-blue-400 to-blue-300 mt-1 mx-auto rounded-full opacity-60"></div>
+                </div>
+              </div>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white text-center mb-4 tracking-tight drop-shadow px-2">Logistics. Delivered. <span className="text-[#b4a577]">Exceptionally.</span></h1>
-            <p className="text-base sm:text-lg md:text-2xl text-gray-300 text-center max-w-2xl mb-6 sm:mb-8 px-3">USKO & Diamond Pet Food: Specialized logistics for dry pet food distribution across North America, Mexico, South America, and overseas markets.</p>
-            <span className="inline-block bg-[#b4a577]/20 border border-[#b4a577] text-[#b4a577] font-bold text-sm md:text-lg px-4 py-2 rounded-full shadow-lg mb-4">Prepared for Diamond Pet Food</span>
+            
+            {/* Main Title - Netflix Style */}
+            <div className="text-center mb-8">
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black text-white mb-6 tracking-tight leading-none">
+                <span className="block">Logistics.</span>
+                <span className="block">Delivered.</span>
+                <span className="block text-[#b4a577] drop-shadow-lg">Exceptionally.</span>
+              </h1>
+              
+              {/* Subtitle */}
+              <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light">
+                USKO & Diamond Pet Food: Specialized logistics for dry pet food distribution across 
+                <span className="text-[#b4a577] font-medium"> North America, Mexico, South America, and overseas markets</span>.
+              </p>
+            </div>
+            
+            {/* Call to Action Badge */}
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#b4a577] to-blue-500 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+              <div className="relative bg-black border border-[#b4a577] text-[#b4a577] font-bold text-sm lg:text-lg px-8 py-3 rounded-full shadow-2xl hover:shadow-[#b4a577]/25 transition-all duration-300 hover:scale-105">
+                Prepared for Diamond Pet Food
+              </div>
+            </div>
+            
+            {/* Bottom accent */}
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+              <div className="w-32 h-1 bg-gradient-to-r from-transparent via-[#b4a577] to-transparent rounded-full opacity-50"></div>
+            </div>
           </div>
         </section>
       )
