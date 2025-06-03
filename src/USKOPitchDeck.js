@@ -332,7 +332,7 @@ const USKOPitchDeck = () => {
                   </svg>
                 </div>
                 <h3 className="text-[#b4a577] font-bold text-lg mb-2">Email</h3>
-                <a href="mailto:ron@uskoinc.com" className="text-[#b4a577] font-bold text-lg hover:text-white transition-colors duration-300">ron@uskoinc.com</a>
+                <a href="mailto:sales@uskologistics.com" className="text-[#b4a577] font-bold text-lg hover:text-white transition-colors duration-300">sales@uskologistics.com</a>
               </div>
               
               <div className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-[#b4a577]/30 shadow-lg hover:scale-105 transition-all duration-300">
