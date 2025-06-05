@@ -232,9 +232,9 @@ const USKOPitchDeck = () => {
             </div>
           </div>
           <div className="flex-1 flex flex-col gap-6 z-10 w-full max-w-[95%] sm:max-w-full">
-            <img src="https://imgur.com/5MNmizZ.jpg" alt="USKO Truck" className="w-full h-36 sm:h-48 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
-            <img src="https://imgur.com/WyZyHpc.jpg" alt="USKO International Shipping" className="w-full h-32 sm:h-40 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
-            <img src="https://imgur.com/TptDEQk.jpg" alt="USKO Transportation" className="w-full h-32 sm:h-40 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
+            <img src="https://imgur.com/5MNmizZ.jpg" alt="USKO Truck" className="w-full h-48 sm:h-64 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
+            <img src="https://imgur.com/WyZyHpc.jpg" alt="USKO International Shipping" className="w-full h-40 sm:h-52 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
+            <img src="https://imgur.com/TptDEQk.jpg" alt="USKO Transportation" className="w-full h-40 sm:h-52 object-cover rounded-lg shadow-md hover:shadow-[0_0_25px_rgba(180,165,119,0.3)] transition-all duration-300" />
           </div>
         </section>
       )
@@ -345,7 +345,7 @@ const USKOPitchDeck = () => {
                   </svg>
                 </div>
                 <h3 className="text-[#b4a577] font-bold text-base sm:text-lg mb-2">Contact Us</h3>
-                <a href="tel:2142501011" className="text-[#b4a577] font-bold text-base sm:text-lg hover:text-white transition-colors duration-300">(214) 250-1011 ext. 1212</a>
+                <a href="tel:2142501011" className="text-[#b4a577] font-bold text-base sm:text-lg hover:text-white transition-colors duration-300">(214) 250-1011 ext. 1235</a>
               </div>
               
               <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 sm:p-6 border border-[#b4a577]/30 shadow-lg hover:scale-105 transition-all duration-300">
